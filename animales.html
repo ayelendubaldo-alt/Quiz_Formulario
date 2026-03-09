@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Animales</title>
+  <link rel="stylesheet" href="../animales.css/animales.css">
+</head>
+<body>
+
+  <div id="pantalla-inicio" class="container">
+    <header>
+      <h1>🦁 Instrucciones del Quiz</h1>
+      <p>Lee atentamente antes de comenzar:</p>
+    </header>
+    <main>
+      <ul style="list-style: none; margin-bottom: 20px; color: #555;">
+        <li>⏱️ Tienes <strong>3 minutos</strong> para completar 10 preguntas.</li>
+        <li>🚫 Al agotar el tiempo, el examen se bloqueará automáticamente.</li>
+        <li>✅ Las correctas marcarán en verde y las erróneas en rojo.</li>
+        <li>⚠️ Las no contestadas resaltarán el título en naranja.</li>
+      </ul>
+      <button type="button" onclick="comenzarQuiz()" class="btn-inicio">¡Empezar Quiz!</button>
+    </main>
+  </div>
+
+  <form id="quizForm" style="display: none;">
+    <h1>Quiz de Animales</h1>
+    <div id="cronometro">Tiempo restante: 03:00</div>
+
+    <fieldset>
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">1. ¿Cuál es el animal terrestre más rápido?</label>
+        <label><input type="radio" name="q1" value="a"> Elefante</label>
+        <label><input type="radio" name="q1" value="b"> Guepardo</label>
+        <label><input type="radio" name="q1" value="c"> León</label>
+        <label><input type="radio" name="q1" value="d"> Caballo</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">2. ¿Cuánto pesa aproximadamente un elefante africano adulto?</label>
+        <label><input type="radio" name="q2" value="a"> 1 tonelada</label>
+        <label><input type="radio" name="q2" value="b"> 3 toneladas</label>
+        <label><input type="radio" name="q2" value="c"> 5-6 toneladas</label>
+        <label><input type="radio" name="q2" value="d"> 10 toneladas</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">3. ¿Cuál es el nombre científico del león?</label>
+        <label><input type="radio" name="q3" value="a"> Felis leo</label>
+        <label><input type="radio" name="q3" value="b"> Panthera leo</label>
+        <label><input type="radio" name="q3" value="c"> Leo panthera</label>
+        <label><input type="radio" name="q3" value="d"> Panthera tigris</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">4. ¿Qué animal tiene tres corazones?</label>
+        <label><input type="radio" name="q4" value="a"> Tiburón</label>
+        <label><input type="radio" name="q4" value="b"> Pulpo</label>
+        <label><input type="radio" name="q4" value="c"> Ballena</label>
+        <label><input type="radio" name="q4" value="d"> Medusa</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">5. ¿Qué mamífero puede volar?</label>
+        <label><input type="radio" name="q5" value="a"> Ardilla voladora</label>
+        <label><input type="radio" name="q5" value="b"> Murciélago</label>
+        <label><input type="radio" name="q5" value="c"> Colibrí</label>
+        <label><input type="radio" name="q5" value="d"> Pájaro</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">6. ¿Qué animal es inmune al cáncer?</label>
+        <label><input type="radio" name="q6" value="a"> Tortuga</label>
+        <label><input type="radio" name="q6" value="b"> Rata topo desnuda</label>
+        <label><input type="radio" name="q6" value="c"> Tiburón</label>
+        <label><input type="radio" name="q6" value="d"> Elefante</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">7. ¿Qué animal tiene rayas únicas como huellas dactilares?</label>
+        <label><input type="radio" name="q7" value="a"> Tigre</label>
+        <label><input type="radio" name="q7" value="b"> Cebra</label>
+        <label><input type="radio" name="q7" value="c"> Jaguar</label>
+        <label><input type="radio" name="q7" value="d"> Zorro</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">8. ¿Qué oso tiene pupilas verticales?</label>
+        <label><input type="radio" name="q8" value="a"> Grizzly</label>
+        <label><input type="radio" name="q8" value="b"> Polar</label>
+        <label><input type="radio" name="q8" value="c"> Panda</label>
+        <label><input type="radio" name="q8" value="d"> Negro</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">9. ¿Qué animal puede sobrevivir congelado?</label>
+        <label><input type="radio" name="q9" value="a"> Oso polar</label>
+        <label><input type="radio" name="q9" value="b"> Rana de madera</label>
+        <label><input type="radio" name="q9" value="c"> Pingüino</label>
+        <label><input type="radio" name="q9" value="d"> Camaleón</label>
+      </div>
+
+      <div class="bloque-pregunta">
+        <label class="pregunta-texto">10. ¿Qué rata no suda?</label>
+        <label><input type="radio" name="q10" value="a"> Rata común</label>
+        <label><input type="radio" name="q10" value="b"> Rata canguro</label>
+        <label><input type="radio" name="q10" value="c"> Jerbo</label>
+        <label><input type="radio" name="q10" value="d"> Hamster</label>
+      </div>
+    </fieldset>
+
+   <fieldset>
+      <legend>Preguntas extra</legend>
+      
+      <label for="q11">11. ¿Cuál es tu animal favorito?</label>
+      <select name="q11" id="q11">
+        <option value="">Elige uno</option>
+        <option value="leon">León</option>
+        <option value="elefante">Elefante</option>
+        <option value="guepardo">Guepardo</option>
+        <option value="pulpo">Pulpo</option>
+      </select>
+
+      <p>12. ¿Qué animales te gustan más?</p>
+      <label><input type="checkbox" name="q12" value="a"> Mamíferos</label>
+      <label><input type="checkbox" name="q12" value="b"> Aves</label>
+      <label><input type="checkbox" name="q12" value="c"> Reptiles</label>
+      <label><input type="checkbox" name="q12" value="d"> Insectos</label>
+
+      <label for="q13">13. ¿Por qué te interesan los animales?</label>
+      <input type="text" id="q13" name="q13" placeholder="Escribe al menos 5 palabras..." minlength="5">
+    </fieldset>
+
+    <button type="button" id="btn-corregir" onclick="corregirQuiz()">Corregir Quiz</button>
+    <div id="resultado" class="resultado"></div>
+  </form>
+
+  <script src="../animales.js/animales.js"></script>
+</body>
+</html>

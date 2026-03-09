@@ -1,0 +1,149 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e686d1 0%, #e39fd5 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#quizForm, .container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#cronometro {
+  position: fixed;
+  top: 20px;
+  right: 20%;
+  transform: translateX(50%);
+ font-size: 1.2rem;
+  font-weight: bold;
+  color: #3498db;
+  text-align: center;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  border: 2px solid #3498db
+}
+
+.bloque-pregunta {
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.pregunta-texto {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.pregunta-texto.no-contestada {
+  background-color: #fff3cd !important; 
+  border-left: 5px solid #ffc107 !important;
+  color: #856404 !important;
+}
+
+label:not(.pregunta-texto) {
+  display: block;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+label:not(.pregunta-texto):hover {
+  background: #f0f3f5;
+}
+
+.correcta {
+  background-color: #d4edda !important;
+  border: 1px solid #28a745 !important;
+  border-left: 5px solid #28a745 !important;
+  color: #155724 !important;
+}
+
+.incorrecta {
+  background-color: #f8d7da !important;
+  border: 1px solid #dc3545 !important;
+  border-left: 5px solid #dc3545 !important;
+  color: #721c24 !important;
+}
+
+input[type="text"].correcta, select.correcta {
+  border: 2px solid #28a745 !important;
+}
+
+input[type="text"].incorrecta {
+  border: 2px solid #dc3545 !important;
+}
+
+input[type="text"].no-contestada, select.no-contestada {
+  background-color: #fff3cd !important;
+  border: 2px solid #ffc107 !important;
+}
+
+.btn-inicio, button#btn-corregir {
+  display: block;
+  width: 100%;
+  background: #6eaacf;
+  color: white;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.btn-inicio:hover, button#btn-corregir:hover:not(:disabled) {
+  background: #3498db;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+#resultado {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #f8f9fa;
+  border: 2px solid #3498db;
+  text-align: center;
+  display: none;
+}
