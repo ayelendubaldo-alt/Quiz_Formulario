@@ -1,11 +1,13 @@
 const respuestasCorrectas = {
     q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'b',
-    q6: 'b', q7: 'b', q8: 'c', q9: 'b', q10: 'b'
+    q6: 'b', q7: 'b', q8: 'c', q9: 'b', q10: 'b', 
 };
-
+//Usamos let porque ese valor va a disminuir.
 let tiempoRestante = 180; 
+//Crea una variable vacía que usaremos más tarde para controlar el reloj.
 let intervalo = null;
 
+//Busca el elemento con ID 'pantalla-inicio', si existe, lo oculta cambiándole el estilo css a display=none.
 function comenzarQuiz() {
     if(document.getElementById('pantalla-inicio')){
         document.getElementById('pantalla-inicio').style.display = 'none';
@@ -17,9 +19,11 @@ function comenzarQuiz() {
 function actualizarCronometro() {
     const cronoDoc = document.getElementById('cronometro');
     if (tiempoRestante <= 0) {
+        //Si el tiempo llega a cero, detiene el intervalo clearInterval.
         clearInterval(intervalo);
         corregirQuiz();
         alert("¡Tiempo agotado!");
+        //El reutn evita que el código siga ejecutándose ese segundo.
         return;
     }
     tiempoRestante--;
@@ -34,8 +38,10 @@ function corregirQuiz() {
     document.querySelectorAll('input, select, button').forEach(i => i.disabled = true);
 
     let puntuacion = 0;
-    const totalPreguntasValuables = 11; 
+    const totalPreguntasValuables = 13; 
 
+    //Preguntas 1 a 10 (Radio Buttons), Inicia un bucle que se repite 10 veces.
+    //En cada vuelta, busca que opción marcó el usuario :checked
     for (let i = 1; i <= 10; i++) {
         const nombre = `q${i}`;
         const opciones = document.querySelectorAll(`input[name="${nombre}"]`);
@@ -45,6 +51,8 @@ function corregirQuiz() {
         const bloque = opciones[0].closest('.bloque-pregunta');
         const enunciado = bloque ? bloque.querySelector('.pregunta-texto') : opciones[0].parentElement.previousElementSibling;
 
+        //Aquí si el valor coincide con la correcta, suma 1 punto y pone el fondo verde.
+        //Si falló, oone la respuesta en rojo y busca la correcta para ponerla verde.
         if (seleccionada) {
             if (seleccionada.value === correctaVal) {
                 puntuacion++;
@@ -60,20 +68,23 @@ function corregirQuiz() {
     }
 
     const q11 = document.querySelector('select[name="q11"]');
-    const enunciado11 = q11.parentElement;
+    const contenedor11 = q11.parentElement;
     if (q11.value === "") {
-        enunciado11.classList.add('no-contestada');
+        contenedor11.classList.add('no-contestada');
     } else {
-        enunciado11.classList.add('correcta'); 
+        // Asumimos que cualquier elección válida suma punto, 
+        // o puedes añadir una condición específica si hay una respuesta correcta.
+        contenedor11.classList.add('correcta'); 
+        puntuacion++; 
     }
 
-   
     const q12Checkboxes = document.querySelectorAll('input[name="q12"]:checked');
-    const enunciado12 = document.querySelector('input[name="q12"]').parentElement;
+    const contenedor12 = document.querySelector('input[name="q12"]').parentElement;
     if (q12Checkboxes.length === 0) {
-        enunciado12.classList.add('no-contestada');
+        contenedor12.classList.add('no-contestada');
     } else {
-        enunciado12.classList.add('correcta'); 
+        contenedor12.classList.add('correcta'); 
+        puntuacion++;
     }
 
     const q13 = document.querySelector('input[name="q13"]');
@@ -84,7 +95,7 @@ function corregirQuiz() {
         q13.classList.add('no-contestada');
     } else if (palabras.length >= 5) {
         q13.classList.add('correcta');
-        puntuacion++;
+        puntuacion++; // Ya estaba, pero nos aseguramos de que se mantenga
     } else {
         q13.classList.add('incorrecta'); 
     }
